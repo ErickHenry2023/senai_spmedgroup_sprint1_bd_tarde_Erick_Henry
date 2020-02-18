@@ -11,16 +11,19 @@ CREATE TABLE Clinica(
   ,HorarioAberto   TIME (0) --PARA MOSTRAR APENAS AS HORAS E MINUTOS (0) 
   ,HorarioFechado	TIME (0)
 );
+GO
  -------------------------
  CREATE TABLE Especialidade(
    IdEspecialidade INT  PRIMARY KEY IDENTITY
   ,Titulo          VARCHAR(255) NOT NULL
 );
+GO
 ------------------
 CREATE TABLE TipoUsuario(
    IdTipoUsuario INT  PRIMARY KEY IDENTITY
   ,Titulo        VARCHAR(255) 
 );
+GO
 ------------------
 CREATE TABLE Usuario(
    IdUsuario INT  PRIMARY KEY IDENTITY
@@ -28,6 +31,7 @@ CREATE TABLE Usuario(
   ,Senha     VARCHAR(255) NOT NULL
   ,IdTipoUsuario INT  FOREIGN KEY REFERENCES TipoUsuario(IdTipoUsuario)
 );
+GO
 ------------------
 CREATE TABLE Endereco(
    IdEndereco INT  PRIMARY KEY IDENTITY
@@ -36,7 +40,7 @@ CREATE TABLE Endereco(
   ,IdClinica  INT  FOREIGN KEY REFERENCES Clinica(IdClinica), 
   IdUsuario  INT  FOREIGN KEY REFERENCES Usuario(IdUsuario)
 );
-
+GO
 ------------------
 CREATE TABLE Prontuario(
    IdProntuario   INT  PRIMARY KEY IDENTITY
@@ -47,7 +51,7 @@ CREATE TABLE Prontuario(
   ,IdUsuario      INT  FOREIGN KEY REFERENCES Usuario(IdUsuario),
   IdEndereco     INT  FOREIGN KEY REFERENCES Endereco(IdEndereco)
 );
-
+GO
 ------------------
 CREATE TABLE Medico(
    IdMedico       INT  NOT NULL PRIMARY KEY IDENTITY
@@ -57,6 +61,7 @@ CREATE TABLE Medico(
   ,IdClinica      INT  FOREIGN KEY REFERENCES Clinica(IdClinica)
   ,IdUsuario      INT  FOREIGN KEY REFERENCES Usuario (IdUsuario)
 );
+GO
 ------------------
 CREATE TABLE Consulta(
    IdConsulta   INT  PRIMARY KEY IDENTITY
@@ -65,7 +70,7 @@ CREATE TABLE Consulta(
   ,IdProntuario INT  FOREIGN KEY REFERENCES Prontuario(IdProntuario)
   ,IdMedico     INT  FOREIGN KEY REFERENCES Medico(IdMedico)
 );
-
+GO
 
 SELECT * FROM Clinica;
 SELECT * FROM Especialidade;
